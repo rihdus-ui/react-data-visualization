@@ -1,0 +1,105 @@
+.tabsContainer {
+  position: relative;
+}
+
+.tablist {}
+
+.tabBar {
+  display: flex;
+  color: #666;
+  &.tb--row {
+    flex-direction: row;
+    box-shadow: 0 -1px #CACACA inset;
+    .tablist {
+      margin-left: 12px;
+    }
+  }
+
+  &.tb--col {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    display: inline-block;
+    transform: rotate(90deg);
+    transform-origin: 0 0;
+    .tabItem {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--angled {
+    padding-left: 5px;
+
+    .tabItem {
+      text-align: center;
+      min-width: 140px;
+      position: relative;
+      padding: 12px 10px 6px;
+      color: #000;
+      background-color: transparent;
+      &:before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid #c2c2c2;
+        border-bottom: none;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        background: rgb(210, 210, 210);
+        z-index: -1;
+        -webkit-transform: perspective(100px) rotateX(20deg);
+        -moz-transform: perspective(100px) rotateX(20deg);
+      }
+
+      &:hover {
+        background: none;
+        &:before {
+          background: rgb(196, 196, 196);
+        }
+      }
+
+      &.tabItem--active {
+        z-index: 10;
+        &:before {
+          background: rgb(244, 249, 244);
+        }
+
+        &:hover {
+          &:before {
+            background: rgb(232, 232, 232);
+          }
+        }
+      }
+    }
+  }
+}
+
+.tabItem {
+  display: inline-block;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #CACACA;
+  background-color: #FFF;
+  &:hover {
+    background-color: transparentize(#000000, 0.9);
+  }
+}
+
+.tb--col {
+  .tabItem {
+
+  }
+}
+
+.tabContent {
+  padding: 10px;
+  margin-left: 20px;
+  color: #666;
+}
+
+.tab-icon {
+  margin-right: 5px;
+}
