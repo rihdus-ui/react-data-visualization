@@ -7,9 +7,28 @@ import QueryBar from './query-bar';
 import QueryData from './query-data';
 import QueryVis from './query-vis';
 
+import store from './store';
+
 import './index.css';
 
 export default class QueryView extends Component {
+
+   constructor(props) {
+      super(props);
+
+      this.state = {
+         data: []
+      }
+   }
+
+   componentDidMount() {
+      store.read()
+         .then((resp) => {
+            this.setState({
+               data: resp.data
+            });
+         })
+   }
 
    render() {
       return (
@@ -19,11 +38,11 @@ export default class QueryView extends Component {
             </div>
             <div className="flexbox f-col flex1">
                <div className="flex1">
-                  <QueryData/>
+                  <QueryData data={this.state.data}/>
                </div>
                <div className="hr"/>
                <div className="flex1">
-                  <QueryVis/>
+                  <QueryVis data={this.state.data}/>
                </div>
             </div>
          </div>
